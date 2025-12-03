@@ -1,0 +1,8 @@
+base_dir: /home/HESPlatform/ansible
+default_user: hesuser
+artifact_dir: "{{ base_dir }}/artifacts"
+deploy_dir: "{{ base_dir }}/deployments"
+log_dir: /var/log/ansible
+
+artifact_path: "{{ base_dir }}/artifacts/{{ art_version }}/cacheapi"
+

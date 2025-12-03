@@ -1,0 +1,17 @@
+---
+- name: Ensure rsync is installed
+  package:
+    name: rsync
+    state: present
+
+- name: Check if .NET 8 runtime is installed
+  command: dotnet --list-runtimes
+  register: dotnet_result
+  failed_when: false
+
+- name: Install .NET 8 runtime if missing
+  shell: |
+    wget https://download.visualstudio.microsoft.com/download/pr/0/installer_link
+    sudo apt install ./dotnet-runtime-8.0.x.deb
+  when: "'Microsoft.NETCore.App 8.0' not in dotnet_result.stdout"
+

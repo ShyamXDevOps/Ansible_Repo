@@ -1,0 +1,17 @@
+---
+- name: Create deployment directory
+  file:
+    path: "{{ deploy_dir }}/cacheapi"
+    state: directory
+    mode: "0755"
+
+- name: Copy deployment artifact
+  copy:
+    src: "{{ artifact_path }}/"
+    dest: "{{ deploy_dir }}/cacheapi/"
+    mode: "0755"
+
+# Disable service restart (no service exists yet)
+- debug:
+    msg: "Service restart skipped — no real cacheapi.service found."
+
